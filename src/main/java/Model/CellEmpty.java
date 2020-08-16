@@ -1,20 +1,13 @@
 package Model;
 
-public class CellSnakeBody implements Cell {
-
-    int id;
+public class CellEmpty implements Cell {
     int row;
     int column;
-
-    public CellSnakeBody(int id, int row, int column) {
-        this.id = id;
-        this.row = row;
-        this.column = column;
-    }
+    int id;
 
     public int getId() { return this.id; }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(int id) { this.id = id ;}
 
     public int getRow() {
         return row;
