@@ -3,6 +3,7 @@ package Model;
 import Enums.MoveEnum;
 
 import java.util.Map;
+import java.util.Set;
 
 public class Board {
 
@@ -41,29 +42,29 @@ public class Board {
         return coreBoard;
     }
 
-    public void putFoodOnCoreBoard(){
-        coreBoard[1][1] = new CellFood(11, 1 ,1);
+    public void putFoodOnCoreBoard() {
+        coreBoard[1][1] = new CellFood(11, 1, 1);
     }
 
     public void putSnakeOnBoard(Snake snake) {
         Map<Integer, Cell> snakeMap = snake.getSnakeMap();
-        Cell head = snakeMap.get(1);
-        int row = head.getRow();
-        int column = head.getColumn();
-        coreBoard[row][column] = head;
 
-        if(snakeMap.get(2) != null){
-            Cell body1 = snakeMap.get(2);
-            int row1 = body1.getRow();
-            int column1 = body1.getColumn();
-            coreBoard[row1][column1] = body1;
+        if (snakeMap.size() == 1) {
+            Cell head = snakeMap.get(1);
+            int row = head.getRow();
+            int column = head.getColumn();
+            coreBoard[row][column] = head;
+        } else {
+            Set<Integer> keys = snakeMap.keySet();
+            keys.forEach(k -> coreBoard[snakeMap.get(k).getRow()][snakeMap.get(k).getColumn()]
+                    = new CellSnakeBody(k, snakeMap.get(k).getRow(), snakeMap.get(k).getColumn()));
         }
     }
 
-    public void  clearCoreBoard(){
-        Cell[][] core =  getCoreBoard();
-        for(int i =0; i<core.length; i++){
-            for(int j =0; j<core.length; j++){
+    public void clearCoreBoard() {
+        Cell[][] core = getCoreBoard();
+        for (int i = 0; i < core.length; i++) {
+            for (int j = 0; j < core.length; j++) {
                 core[i][j] = new CellEmpty();
             }
         }
