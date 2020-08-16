@@ -29,14 +29,11 @@ public class PlayerController {
         while (true) {
             moveController = new MoveController(snake);
             MoveEnum moveType = input.getMoveType(input.getIntInput());
-            Snake snake2 = moveController.moveHead(snake, moveType);
+            Snake snake2 = moveController.getSnake();
+            Snake snake3 = moveController.move(snake2, moveType,board);
             board.clearCoreBoard();
             board.putFoodOnCoreBoard();
-            if(true){
-                CellSnakeBody cellSnakeBody = new CellSnakeBody(2,3,3);
-                snake2.addPartSnakeBody(2,cellSnakeBody);
-                board.putSnakeOnBoard(snake2);
-            }
+            board.putSnakeOnBoard(snake3);
             printer.printBoard(board);
         }
     }
