@@ -8,26 +8,30 @@ import Model.Board;
 
 public class PlayerController {
 
-    private final Player player = new Player("Jozek");
-    private final Snake snake;
-    private final Board board;
     private final Printer printer = new Printer();
     private final Input input = new Input();
-    private final int size = 5;
+    private Player player = new Player("Jozek");
+    private Snake snake;
+    private Board board;
+    private int size;
     private MoveController moveController;
     private Counter counter;
 
-
     public PlayerController() {
+        initVariabls();
+        run();
+    }
+
+    public void initVariabls(){
+        size = input.getIntInputWithMessage("Podaj rozmiar planszy : ");
         board = new Board(size);
         snake = new Snake(size);
         board.putSnakeOnBoard(snake);
         board.putFoodOnCoreBoard();
         printer.printBoard(board);
         counter = new Counter();
-
-        run();
     }
+
 
     public void run() {
         while (true) {

@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Input {
 
     Scanner sc = new Scanner(System.in);
+    Printer printer = new Printer();
 
     public int getIntInput() {
         return sc.nextInt();
@@ -31,4 +32,8 @@ public class Input {
         return moveType;
     }
 
+    public int getIntInputWithMessage(String message) {
+        printer.printMessage(message);
+        return sc.nextInt();
+    }
 }
