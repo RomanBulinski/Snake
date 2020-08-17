@@ -12,10 +12,12 @@ public class PlayerController {
     private final Input input = new Input();
     private Player player = new Player("Jozek");
     private Snake snake;
+    private Snake movedSnake;
     private Board board;
     private int size;
     private MoveController moveController;
     private Counter counter;
+    private MoveEnum moveType;
 
     public PlayerController() {
         initVariabls();
@@ -25,23 +27,21 @@ public class PlayerController {
     public void initVariabls(){
         size = input.getIntInputWithMessage("Podaj rozmiar planszy : ");
         board = new Board(size);
+        board = board.putFoodOnCoreBoard();
         snake = new Snake(size);
         board.putSnakeOnBoard(snake);
-        board.putFoodOnCoreBoard();
         printer.printBoard(board);
         counter = new Counter();
     }
 
-
     public void run() {
         while (true) {
             moveController = new MoveController(snake,counter);
-            MoveEnum moveType = input.getMoveType(input.getIntInput());
-            Snake snake2 = moveController.getSnake();
-            Snake snake3 = moveController.move(snake2, moveType,board);
-            board.clearCoreBoard();
-            board.putFoodOnCoreBoard();
-            board.putSnakeOnBoard(snake3);
+            moveType = input.getMoveType(input.getIntInput());
+            movedSnake = moveController.moveSnake(moveController.getSnake(), moveType,board);
+            board = board.clearBoard();
+            board = board.putFoodOnCoreBoard();
+            board = board.putSnakeOnBoard(movedSnake);
             printer.printBoard(board);
             printer.printMessage("Counter : "+String.valueOf(counter.getAmount()));
             printer.goNextLine();

@@ -38,11 +38,12 @@ public class Board {
         return coreBoard;
     }
 
-    public void putFoodOnCoreBoard() {
+    public Board putFoodOnCoreBoard() {
         coreBoard[1][1] = new CellFood(11, 1, 1);
+        return this;
     }
 
-    public void putSnakeOnBoard(Snake snake) {
+    public Board putSnakeOnBoard(Snake snake) {
         Map<Integer, Cell> snakeMap = snake.getSnakeMap();
 
         if (snakeMap.size() == 1) {
@@ -55,15 +56,16 @@ public class Board {
             keys.forEach(k -> coreBoard[snakeMap.get(k).getRow()][snakeMap.get(k).getColumn()]
                     = new CellSnakeBody(k, snakeMap.get(k).getRow(), snakeMap.get(k).getColumn()));
         }
+        return this;
     }
 
-    public void clearCoreBoard() {
-        Cell[][] core = getCoreBoard();
-        for (int i = 0; i < core.length; i++) {
-            for (int j = 0; j < core.length; j++) {
-                core[i][j] = new CellEmpty();
+    public Board clearBoard() {
+        for (int i = 0; i < coreBoard.length; i++) {
+            for (int j = 0; j < coreBoard.length; j++) {
+                coreBoard[i][j] = new CellEmpty();
             }
         }
+        return this;
     }
 
 }

@@ -15,8 +15,11 @@ public class MoveController {
         this.snake = snake;
         this.counter = counter;
     }
+    public Snake getSnake() {
+        return snake;
+    }
 
-    public Snake move(Snake snake, MoveEnum moveEnum, Board board) {
+    public Snake moveSnake(Snake snake, MoveEnum moveEnum, Board board) {
         int size = snake.getSnakeMap().size();
         Cell head = snake.getSnakeMap().get(1);
         int row = head.getRow();
@@ -24,50 +27,42 @@ public class MoveController {
         int tempRow = head.getRow();
         int tempColumn = head.getColumn();
         if (moveEnum == MoveEnum.RIGHT) {
-            if (board.getCoreBoard()[row][column + 1] instanceof CellFood) {
-                addToSnakAndCount(snake, size, row, column);
-            }
-            if (snake.getSnakeMap().size() == 1) {
-                head.setColumn(column + 1);
-            } else {
-                head.setColumn(column + 1);
-                replaceCellQueue(snake, tempRow, tempColumn);
-            }
+            moveHorizontally(snake, board, size, head, row, column, tempRow, tempColumn, column + 1);
         } else if (moveEnum == MoveEnum.LEFT) {
-            if (board.getCoreBoard()[row][column - 1] instanceof CellFood) {
-                addToSnakAndCount(snake, size, row, column);
-            }
-            if (snake.getSnakeMap().size() == 1) {
-                head.setColumn(column - 1);
-            } else {
-                head.setColumn(column - 1);
-                replaceCellQueue(snake, tempRow, tempColumn);
-            }
+            moveHorizontally(snake, board, size, head, row, column, tempRow, tempColumn, column - 1);
         } else if (moveEnum == MoveEnum.UP) {
-            if (board.getCoreBoard()[row - 1][column] instanceof CellFood) {
-                addToSnakAndCount(snake, size, row, column);
-            }
-            if (snake.getSnakeMap().size() == 1) {
-                head.setRow(row - 1);
-            } else {
-                head.setRow(row - 1);
-                replaceCellQueue(snake, tempRow, tempColumn);
-            }
+            moveVartically(snake, board, size, head, row, column, tempRow, tempColumn, row - 1);
         } else if (moveEnum == MoveEnum.DOWN) {
-            if (board.getCoreBoard()[row + 1][column] instanceof CellFood) {
-                addToSnakAndCount(snake, size, row, column);
-            }
-            if (snake.getSnakeMap().size() == 1) {
-                head.setRow(row + 1);
-            } else {
-                head.setRow(row +1 );
-                replaceCellQueue(snake, tempRow, tempColumn);
-            }
+            moveVartically(snake, board, size, head, row, column, tempRow, tempColumn, row + 1);
         }
         return snake;
     }
 
-    private void addToSnakAndCount(Snake snake, int size, int row, int column) {
+    private void moveVartically(Snake snake, Board board, int size, Cell head, int row, int column, int tempRow, int tempColumn, int i) {
+        if (board.getCoreBoard()[i][column] instanceof CellFood) {
+            addToSnakeAndCount(snake, size, row, column);
+        }
+        if (snake.getSnakeMap().size() == 1) {
+            head.setRow(i);
+        } else {
+            head.setRow(i);
+            replaceCellQueue(snake, tempRow, tempColumn);
+        }
+    }
+
+    private void moveHorizontally(Snake snake, Board board, int size, Cell head, int row, int column, int tempRow, int tempColumn, int i) {
+        if (board.getCoreBoard()[row][i] instanceof CellFood) {
+            addToSnakeAndCount(snake, size, row, column);
+        }
+        if (snake.getSnakeMap().size() == 1) {
+            head.setColumn(i);
+        } else {
+            head.setColumn(i);
+            replaceCellQueue(snake, tempRow, tempColumn);
+        }
+    }
+
+    private void addToSnakeAndCount(Snake snake, int size, int row, int column) {
         snake.addPartSnakeBody(size + 1, new CellSnakeBody(size + 1, row, column));
         counter.setAmount(counter.getAmount() + 1);
     }
@@ -91,11 +86,4 @@ public class MoveController {
         }
     }
 
-    public Snake getSnake() {
-        return snake;
-    }
-
-    public void setSnake(Snake snake) {
-        this.snake = snake;
-    }
 }
