@@ -9,7 +9,6 @@ public class Input {
     Scanner sc = new Scanner(System.in);
 
     public int getIntInput() {
-//        return Integer.parseInt(sc.next());
         return sc.nextInt();
     }
 
@@ -30,18 +29,6 @@ public class Input {
                 break;
         }
         return moveType;
-    }
-
-    public int getIntInputAndEnter() {
-        String readString = sc.next();
-        while (readString != null) {
-            if (sc.hasNextLine()) {
-                readString = sc.nextLine();
-            } else {
-                readString = null;
-            }
-        }
-        return Integer.parseInt(readString);
     }
 
 }

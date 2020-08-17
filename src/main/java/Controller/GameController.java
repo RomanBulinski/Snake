@@ -1,8 +1,5 @@
 package Controller;
 
-import View.Input;
-import View.Printer;
-
 public class GameController {
 
     public GameController() {

@@ -14,17 +14,13 @@ public class Board {
         coreBoard = createCoreBoard(size);
     }
 
-    public int getSize() {
-        return size;
-    }
+    public int getSize() { return size; }
 
     public void setSize(int size) {
         this.size = size;
     }
 
-    public Cell[][] getCoreBoard() {
-        return coreBoard;
-    }
+    public Cell[][] getCoreBoard() { return coreBoard; }
 
     public void setCoreBoard(Cell[][] coreBoard) {
         this.coreBoard = coreBoard;
