@@ -1,14 +1,13 @@
-package Model;
+package Model.Cell;
 
-public class CellTrap implements Cell {
-
+public class CellEmpty implements Cell {
     int row;
     int column;
     int id;
 
     public int getId() { return this.id; }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(int id) { this.id = id ;}
 
     public int getRow() {
         return row;
@@ -25,5 +24,4 @@ public class CellTrap implements Cell {
     public void setColumn(int column) {
         this.column = column;
     }
-
 }

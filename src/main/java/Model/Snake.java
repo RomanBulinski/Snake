@@ -1,5 +1,8 @@
 package Model;
 
+import Model.Cell.Cell;
+import Model.Cell.CellSnakeHead;
+
 import java.util.HashMap;
 import java.util.Map;
 

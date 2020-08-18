@@ -1,6 +1,7 @@
 package View;
 
 import Model.*;
+import Model.Cell.*;
 
 public class Printer {
 

@@ -8,14 +8,14 @@ import Model.Board;
 
 public class PlayerController {
 
-    private final Printer printer = new Printer();
-    private final Input input = new Input();
-    private Player player = new Player("Jozek");
+    public final Printer printer = new Printer();
+    public final Input input = new Input();
+    private Player player;
     private Snake snake;
     private Snake movedSnake;
     private Board board;
     private int size;
-    private MoveController moveController;
+    private Mover mover;
     private Counter counter;
     private MoveEnum moveType;
 
@@ -25,6 +25,7 @@ public class PlayerController {
     }
 
     public void initVariabls(){
+        player = new Player("Jozek");
         size = input.getIntInputWithMessage("Podaj rozmiar planszy : ");
         board = new Board(size);
         board = board.putFoodOnCoreBoard();
@@ -32,13 +33,13 @@ public class PlayerController {
         board.putSnakeOnBoard(snake);
         printer.printBoard(board);
         counter = new Counter();
+        mover = new Mover();
     }
 
     public void run() {
         while (true) {
-            moveController = new MoveController(snake,counter);
             moveType = input.getMoveType(input.getIntInput());
-            movedSnake = moveController.moveSnake(moveController.getSnake(), moveType,board);
+            movedSnake = mover.moveSnake(snake, moveType,board, counter);
             board = board.clearBoard();
             board = board.putFoodOnCoreBoard();
             board = board.putSnakeOnBoard(movedSnake);

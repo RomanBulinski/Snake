@@ -1,6 +1,9 @@
 package Model;
 
-import Enums.MoveEnum;
+import Model.Cell.Cell;
+import Model.Cell.CellEmpty;
+import Model.Cell.CellFood;
+import Model.Cell.CellSnakeBody;
 
 import java.util.Map;
 import java.util.Set;

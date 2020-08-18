@@ -1,12 +1,12 @@
-package Model;
+package Model.Cell;
 
-public class CellSnakeBody implements Cell {
+public class CellFood  implements Cell {
 
-    int id;
     int row;
     int column;
+    int id;
 
-    public CellSnakeBody(int id, int row, int column) {
+    public CellFood(int id, int row, int column) {
         this.id = id;
         this.row = row;
         this.column = column;
@@ -31,4 +31,5 @@ public class CellSnakeBody implements Cell {
     public void setColumn(int column) {
         this.column = column;
     }
+
 }
