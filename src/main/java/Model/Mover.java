@@ -11,8 +11,6 @@ import java.util.Set;
 
 public class Mover {
 
-    public Mover() { }
-
     public Snake moveSnake(Snake snake, MoveEnum moveEnum, Board board, Counter counter) {
         int size = snake.getSnakeMap().size();
         Cell head = snake.getSnakeMap().get(1);

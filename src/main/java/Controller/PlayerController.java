@@ -12,7 +12,6 @@ public class PlayerController {
     public final Input input = new Input();
     private Player player;
     private Snake snake;
-    private Snake movedSnake;
     private Board board;
     private int size;
     private Mover mover;
@@ -39,10 +38,10 @@ public class PlayerController {
     public void run() {
         while (true) {
             moveType = input.getMoveType(input.getIntInput());
-            movedSnake = mover.moveSnake(snake, moveType,board, counter);
+            snake = mover.moveSnake(snake, moveType,board, counter);
             board = board.clearBoard();
             board = board.putFoodOnCoreBoard();
-            board = board.putSnakeOnBoard(movedSnake);
+            board = board.putSnakeOnBoard(snake);
             printer.printBoard(board);
             printer.printMessage("Counter : "+String.valueOf(counter.getAmount()));
             printer.goNextLine();
