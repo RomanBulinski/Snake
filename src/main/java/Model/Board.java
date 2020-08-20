@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class Board {
 
-    int size;
+    Integer size;
     Cell[][] coreBoard;
 
     public Board(int size) {
@@ -30,6 +30,7 @@ public class Board {
     }
 
     public Cell[][] createCoreBoard(int sizeBoard) {
+        size = sizeBoard;
         Cell[][] coreBoard = new Cell[sizeBoard][];
         for (int i = 0; i < sizeBoard; i++) {
             Cell[] row = new Cell[sizeBoard];
