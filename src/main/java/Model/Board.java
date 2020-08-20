@@ -1,9 +1,6 @@
 package Model;
 
-import Model.Cell.Cell;
-import Model.Cell.CellEmpty;
-import Model.Cell.CellFood;
-import Model.Cell.CellSnakeBody;
+import Model.Cell.*;
 
 import java.util.Map;
 import java.util.Set;
@@ -44,6 +41,11 @@ public class Board {
 
     public Board putFoodOnCoreBoard() {
         coreBoard[1][1] = new CellFood(11, 1, 1);
+        return this;
+    }
+
+    public Board putTrapOnCoreBoard() {
+        coreBoard[0][0] = new CellTrap(21, 0, 0);
         return this;
     }
 

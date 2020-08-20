@@ -14,11 +14,13 @@ public class Printer {
                 if (coreBoard[i][j] instanceof CellEmpty) {
                     printMessage(" .");
                 } else if(coreBoard[i][j] instanceof CellSnakeHead){
-                    printMessage(" H");
+                    printMessage(" O");
                 }else if(coreBoard[i][j] instanceof CellSnakeBody) {
-                    printMessage(" x");
+                    printMessage(" o");
                 }else if(coreBoard[i][j] instanceof CellFood) {
                     printMessage(" F");
+                }else if(coreBoard[i][j] instanceof CellTrap) {
+                    printMessage(" X");
                 }
             }
             goNextLine();

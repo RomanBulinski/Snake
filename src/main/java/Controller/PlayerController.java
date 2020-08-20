@@ -26,8 +26,7 @@ public class PlayerController {
     public void initVariabls(){
         player = new Player("Jozek");
         size = input.getIntInputWithMessage("Podaj rozmiar planszy : ");
-        board = new Board(size);
-        board = board.putFoodOnCoreBoard();
+        board = new Board(size).putFoodOnCoreBoard().putTrapOnCoreBoard();
         snake = new Snake(size);
         board.putSnakeOnBoard(snake);
         printer.printBoard(board);
@@ -38,11 +37,10 @@ public class PlayerController {
     public void run() {
         while (true) {
             moveType = input.getMoveType(input.getIntInput());
-            snake = mover.moveSnake(snake, moveType,board, counter);
-            board = board.clearBoard();
-            board = board.putFoodOnCoreBoard();
-            board = board.putSnakeOnBoard(snake);
-            printer.printBoard(board);
+            snake = mover.moveSnake(snake, moveType, board, counter);
+            printer.printBoard(board.clearBoard().
+                    putFoodOnCoreBoard().
+                    putSnakeOnBoard(snake));
             printer.printMessage("Counter : "+String.valueOf(counter.getAmount()));
             printer.goNextLine();
         }

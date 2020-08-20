@@ -2,9 +2,15 @@ package Model.Cell;
 
 public class CellTrap implements Cell {
 
+    int id;
     int row;
     int column;
-    int id;
+
+    public CellTrap(int id, int row, int column) {
+        this.id = id;
+        this.row = row;
+        this.column = column;
+    }
 
     public int getId() { return this.id; }
 
