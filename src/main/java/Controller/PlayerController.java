@@ -38,8 +38,8 @@ public class PlayerController {
         while (true) {
             moveType = input.getMoveType(input.getIntInput());
             snake = mover.moveSnake(snake, moveType, board, counter);
-            printer.printBoard(board.clearBoard().
-                    putFoodOnCoreBoard().
+            printer.printBoard(board.
+                    removeSnake().
                     putSnakeOnBoard(snake));
             printer.printMessage("Counter : "+String.valueOf(counter.getAmount()));
             printer.goNextLine();

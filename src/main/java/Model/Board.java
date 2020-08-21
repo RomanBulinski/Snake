@@ -74,4 +74,15 @@ public class Board {
         return this;
     }
 
+    public Board removeSnake() {
+        for (int i = 0; i < coreBoard.length; i++) {
+            for (int j = 0; j < coreBoard.length; j++) {
+                if(coreBoard[i][j] instanceof CellSnakeHead || coreBoard[i][j] instanceof CellSnakeBody ){
+                    coreBoard[i][j] = new CellEmpty();
+                }
+            }
+        }
+        return this;
+    }
+
 }

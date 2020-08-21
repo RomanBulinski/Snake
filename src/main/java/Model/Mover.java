@@ -61,7 +61,7 @@ public class Mover {
 
     private void addToSnakeAndCount(Snake snake, int snakeSize, int row, int column, Counter counter) {
         snake.addPartSnakeBody(snakeSize + 1, new CellSnakeBody(snakeSize + 1, row, column));
-        counter.setAmount(counter.getAmount() + 1);
+        counter.add(1);
     }
 
     private void replaceCellQueue(Snake snake, int tempRow, int tempColumn) {
