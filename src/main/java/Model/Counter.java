@@ -2,7 +2,7 @@ package Model;
 
 public class Counter {
 
-    int amount;
+    private int amount;
 
     public Counter() {
         this.amount = 0;

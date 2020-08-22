@@ -8,8 +8,8 @@ import java.util.Map;
 
 public class Snake {
 
-    Map<Integer, Cell> snakeMap = new HashMap<>();
-    int size;
+    private Map<Integer, Cell> snakeMap = new HashMap<>();
+    private int size;
 
     public Snake(int size){
         this. size = size;

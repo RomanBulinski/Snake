@@ -1,9 +1,7 @@
 package Model.Cell;
 
-public class CellEmpty implements Cell {
-    int row;
-    int column;
-    int id;
+public class CellEmpty extends CellAbstract implements Cell {
+
 
     public int getId() { return this.id; }
 
@@ -24,4 +22,6 @@ public class CellEmpty implements Cell {
     public void setColumn(int column) {
         this.column = column;
     }
+
+
 }

@@ -1,10 +1,6 @@
 package Model.Cell;
 
-public class CellTrap implements Cell {
-
-    int id;
-    int row;
-    int column;
+public class CellTrap extends CellAbstract implements Cell {
 
     public CellTrap(int id, int row, int column) {
         this.id = id;

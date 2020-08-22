@@ -1,10 +1,7 @@
 package Model.Cell;
 
-public class CellFood  implements Cell {
+public class CellFood extends CellAbstract implements Cell {
 
-    int row;
-    int column;
-    int id;
 
     public CellFood(int id, int row, int column) {
         this.id = id;

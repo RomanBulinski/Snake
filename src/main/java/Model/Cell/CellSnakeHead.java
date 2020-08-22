@@ -1,10 +1,6 @@
 package Model.Cell;
 
-public class CellSnakeHead implements Cell  {
-
-    int id;
-    int row;
-    int column;
+public class CellSnakeHead extends CellAbstract implements Cell  {
 
     public CellSnakeHead(int id, int row, int column) {
         this.id = id;

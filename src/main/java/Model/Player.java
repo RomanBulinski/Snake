@@ -2,7 +2,7 @@ package Model;
 
 public class Player {
 
-    String name;
+    private String name;
 
     public Player(String name) {
         this.name = name;

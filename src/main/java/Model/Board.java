@@ -7,8 +7,8 @@ import java.util.Set;
 
 public class Board {
 
-    Integer size;
-    Cell[][] coreBoard;
+    private Integer size;
+    private Cell[][] coreBoard;
 
     public Board(int size) {
         coreBoard = createCoreBoard(size);
@@ -37,11 +37,6 @@ public class Board {
             coreBoard[i] = row;
         }
         return coreBoard;
-    }
-
-    public Board putFoodOnCoreBoard() {
-        coreBoard[1][1] = new CellFood(11, 1, 1);
-        return this;
     }
 
     public Board putTrapOnCoreBoard() {
@@ -84,5 +79,18 @@ public class Board {
         }
         return this;
     }
+
+    public Board putFoodOnCoreBoard() {
+
+
+        coreBoard[1][1] = new CellFood(11, 1, 1);
+        return this;
+    }
+
+    public Board checkAndPutFoodOnBoard(){
+        //TODO implement this method
+        return this;
+    }
+
 
 }
