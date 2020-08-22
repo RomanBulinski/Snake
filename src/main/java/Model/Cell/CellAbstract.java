@@ -6,5 +6,4 @@ public abstract class CellAbstract implements Cell{
     int row;
     int column;
 
-
 }

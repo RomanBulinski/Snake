@@ -2,11 +2,15 @@ package Model;
 
 import Model.Cell.*;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 public class Board {
 
+    private final Utils utils = new Utils();
     private Integer size;
     private Cell[][] coreBoard;
 
@@ -14,13 +18,17 @@ public class Board {
         coreBoard = createCoreBoard(size);
     }
 
-    public int getSize() { return size; }
+    public int getSize() {
+        return size;
+    }
 
     public void setSize(int size) {
         this.size = size;
     }
 
-    public Cell[][] getCoreBoard() { return coreBoard; }
+    public Cell[][] getCoreBoard() {
+        return coreBoard;
+    }
 
     public void setCoreBoard(Cell[][] coreBoard) {
         this.coreBoard = coreBoard;
@@ -39,14 +47,8 @@ public class Board {
         return coreBoard;
     }
 
-    public Board putTrapOnCoreBoard() {
-        coreBoard[0][0] = new CellTrap(21, 0, 0);
-        return this;
-    }
-
     public Board putSnakeOnBoard(Snake snake) {
         Map<Integer, Cell> snakeMap = snake.getSnakeMap();
-
         if (snakeMap.size() == 1) {
             Cell head = snakeMap.get(1);
             int row = head.getRow();
@@ -72,7 +74,7 @@ public class Board {
     public Board removeSnake() {
         for (int i = 0; i < coreBoard.length; i++) {
             for (int j = 0; j < coreBoard.length; j++) {
-                if(coreBoard[i][j] instanceof CellSnakeHead || coreBoard[i][j] instanceof CellSnakeBody ){
+                if (coreBoard[i][j] instanceof CellSnakeHead || coreBoard[i][j] instanceof CellSnakeBody) {
                     coreBoard[i][j] = new CellEmpty();
                 }
             }
@@ -81,16 +83,51 @@ public class Board {
     }
 
     public Board putFoodOnCoreBoard() {
-
-
-        coreBoard[1][1] = new CellFood(11, 1, 1);
+        int row = utils.getIntBetween(0, size - 1);
+        int column = utils.getIntBetween(0, size - 1);
+        if (isEmptyCell(row, column)) {
+            coreBoard[row][column] = new CellFood(11, row, column);
+        }
         return this;
     }
 
-    public Board checkAndPutFoodOnBoard(){
+    public Board checkAndPutFoodOnBoard() {
         //TODO implement this method
         return this;
     }
 
+    public Board putTrapOnCoreBoard() {
+        int row = utils.getIntBetween(0, size - 1);
+        int column = utils.getIntBetween(0, size - 1);
+        if (isEmptyCell(row, column)) {
+            coreBoard[row][column] = new CellTrap(21, row, column);
+        }
+        return this;
+    }
+
+    private boolean isEmptyCell(int row, int column) {
+        return coreBoard[row][column] instanceof CellEmpty;
+    }
+
+    private boolean isFoodOnBoard() {
+        for (int i = 0; i < coreBoard.length; i++) {
+            int l = Arrays.stream(coreBoard[i]).filter(cell -> cell instanceof CellFood).
+                    collect(Collectors.toList()).
+                    size();
+            if (l > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //dont remove - second solution for above
+    private boolean isFoodOnBoard2() {
+        AtomicReference<Boolean> result = new AtomicReference<>(false);
+        Arrays.stream(coreBoard).
+                forEach(line -> Arrays.stream(line).
+                        filter(cell -> cell instanceof CellFood).forEach(x -> result.set(true)));
+        return result.get();
+    }
 
 }
