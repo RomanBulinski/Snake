@@ -83,10 +83,12 @@ public class Board {
     }
 
     public Board putFoodOnCoreBoard() {
-        int row = utils.getIntBetween(0, size - 1);
-        int column = utils.getIntBetween(0, size - 1);
-        if (isEmptyCell(row, column)) {
-            coreBoard[row][column] = new CellFood(11, row, column);
+        if (!isFoodOnBoard()) {
+            int row = utils.getIntBetween(0, size - 1);
+            int column = utils.getIntBetween(0, size - 1);
+            if (isEmptyCell(row, column)) {
+                coreBoard[row][column] = new CellFood(11, row, column);
+            }
         }
         return this;
     }

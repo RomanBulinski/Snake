@@ -40,7 +40,8 @@ public class PlayerController {
             snake = mover.moveSnake(snake, moveType, board, counter);
             printer.printBoard(board.
                     removeSnake().
-                    putSnakeOnBoard(snake));
+                    putSnakeOnBoard(snake).
+                    putFoodOnCoreBoard());
             printer.printMessage("Counter : "+String.valueOf(counter.getAmount()));
             printer.goNextLine();
         }
