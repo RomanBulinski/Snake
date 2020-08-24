@@ -2,6 +2,7 @@ package Model;
 
 import Enums.MoveEnum;
 import Model.Cell.Cell;
+import Model.Cell.CellEmpty;
 import Model.Cell.CellFood;
 import Model.Cell.CellSnakeBody;
 
@@ -32,14 +33,16 @@ public class Mover {
     private void moveVartically(Snake snake, Board board, int size, Cell head, int row, int column, int tempRow, int tempColumn, int i, Counter counter) {
         int bordSize = board.getSize();
         if (i >= 0 && i < bordSize) {
-            if (board.getCoreBoard()[i][column] instanceof CellFood) {
-                addToSnakeAndCount(snake, size, row, column, counter);
-            }
-            if (snake.getSnakeMap().size() == 1) {
-                head.setRow(i);
-            } else {
-                head.setRow(i);
-                replaceCellQueue(snake, tempRow, tempColumn);
+            if (board.getCoreBoard()[i][column] instanceof CellFood || board.getCoreBoard()[i][column] instanceof CellEmpty) {
+                if (board.getCoreBoard()[i][column] instanceof CellFood) {
+                    addToSnakeAndCount(snake, size, row, column, counter);
+                }
+                if (snake.getSnakeMap().size() == 1) {
+                    head.setRow(i);
+                } else {
+                    head.setRow(i);
+                    replaceCellQueue(snake, tempRow, tempColumn);
+                }
             }
         }
     }
@@ -47,14 +50,16 @@ public class Mover {
     private void moveHorizontally(Snake snake, Board board, int snakeSize, Cell head, int row, int column, int tempRow, int tempColumn, int i, Counter counter) {
         int bordSize = board.getSize();
         if (i >= 0 && i < bordSize) {
-            if (board.getCoreBoard()[row][i] instanceof CellFood) {
-                addToSnakeAndCount(snake, snakeSize, row, column, counter);
-            }
-            if (snake.getSnakeMap().size() == 1) {
-                head.setColumn(i);
-            } else {
-                head.setColumn(i);
-                replaceCellQueue(snake, tempRow, tempColumn);
+            if (board.getCoreBoard()[row][i] instanceof CellFood || board.getCoreBoard()[row][i] instanceof CellEmpty) {
+                if (board.getCoreBoard()[row][i] instanceof CellFood) {
+                    addToSnakeAndCount(snake, snakeSize, row, column, counter);
+                }
+                if (snake.getSnakeMap().size() == 1) {
+                    head.setColumn(i);
+                } else {
+                    head.setColumn(i);
+                    replaceCellQueue(snake, tempRow, tempColumn);
+                }
             }
         }
     }
