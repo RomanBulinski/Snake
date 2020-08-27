@@ -47,6 +47,7 @@ public class Mover {
         }
     }
 
+
     private void moveHorizontally(Snake snake, Board board, int snakeSize, Cell head, int row, int column, int tempRow, int tempColumn, int i, Counter counter) {
         int bordSize = board.getSize();
         if (i >= 0 && i < bordSize) {
